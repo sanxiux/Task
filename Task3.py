@@ -34,18 +34,8 @@ def is_kuohao(char):
     	return True
     else:
         return False
-def is_xiaoshou(char):
-    """判断是否包含空格"""
-    if char.startswith('140'):
-    	print('-----------------')
-    	return True
-    else:
-        return False
 
-def sortedDictValues1(adict):
-	items = adict.items()
-	items.sort()
-	return [value  for key, value  in items]
+
 filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
