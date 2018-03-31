@@ -8,21 +8,14 @@ with open(filename, 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
     element_First = texts[0]
-    element_Last = texts[-1]
     print('First record of texts,{} texts {} at time {}'.format(element_First[0],element_First[1],element_First[2]))
-    print('Last record of calls,{} calls {} at time {}, lasting <during> seconds'.format(element_Last[0],element_Last[1],element_Last[2]))
-
-
-print('--------------------------------------------------------分割线-----------------------------------------------------')
 
 
 filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    element_First = calls[0]
     element_Last = calls[-1]
-    print('First record of texts,{} texts {} at time {}'.format(element_First[0],element_First[1],element_First[2],element_First[3]))
     print('Last record of calls,{} calls {} at time {}, lasting {} seconds'.format(element_Last[0],element_Last[1],element_Last[2],element_Last[3]))
 
 
