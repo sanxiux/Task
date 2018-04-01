@@ -3,32 +3,36 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
-zidian ={}
-temp = 0
 
-def Phone_Max_second(calls):
-	global zidian
-	global temp
-	temp = 0
-	for i in range(len(calls)):
-		arrive = calls[i]
-		if(len(zidian)==0):
-			zidian = {arrive[0]:arrive[3]}
-			temp = arrive[0]
-		else:
-			if(int(zidian.get(temp))>=int(arrive[3])):
-				continue
-			else:
-				zidian = {arrive[0]:arrive[3]}
-				temp = arrive[0]
-	return zidian
 filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    zidian = Phone_Max_second(calls)
-    for k,v in zidian.items():
-    	print ("{} spent the longest time, {} seconds, on the phone during September 2016.".format(k,v))
+    zidian = {}
+    for i in range(len(calls)):
+    	arrive = calls[i]
+    	if zidian.get(arrive[0])==None:
+    		zidian.setdefault(arrive[0],int(arrive[3]))
+    	else:
+    		time = zidian.get(arrive[0])
+    		zidian.update({arrive[0]:int(arrive[3])+int(time)})
+
+    	if zidian.get(arrive[1])==None:
+    		zidian.setdefault(arrive[1],int(arrive[3]))
+    	else:
+    		time = zidian.get(arrive[1])
+    		zidian.update({arrive[1]:int(arrive[3])+int(time)})
+    Keys = ""
+    Values = ""
+    for key,value in zidian.items():
+    	if Keys=="":
+    		Keys = key
+    		Values = value
+    	else:
+    		if int(Values)-int(value) < 0:
+    			Keys = key
+    			Values = value
+print ("{} spent the longest time, {} seconds, on the phone during September 2016.".format(Keys,Values))
 
 """
 任务2: 哪个电话号码的通话总时间最长? 不要忘记，用于接听电话的时间也是通话时间的一部分。

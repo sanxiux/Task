@@ -17,57 +17,60 @@ def Phone_Max_second(key,value):
 
 
 def is_contain(char):
-    """判断是否包含空格"""
     if char.find('(080)')!=-1:
     	return True
     else:
         return False
 def is_space(char):
-    """判断是否包含空格"""
     if char.find(' ')!=-1:
     	return True
     else:
         return False
 def is_kuohao(char):
-    """判断是否包含空格"""
     if char.find('(')!=-1:
     	return True
     else:
         return False
-
-
+def is_xiaoshou(char):
+    """判断是否包含空格"""
+    if char.startswith('140'):
+        return True
+    else:
+        return False
+zidian_first = []
+zong = ""
+quan = 0
 filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    ##先找到带080的那一项  
-    ## 然后找到找到代号去跟map里面对比 
-    ## 放入map 里面  
     zong = len(calls)
     for i in range(len(calls)):
-    	arrive = calls[i]
-    	call = arrive[0]
-    	answer = arrive[1]
-    	if is_contain :
-	    	if is_space(answer):
-	    		Phone_Max_second(answer[:answer.find(' ')],answer[answer.find(' ')+1:])
-	    		#print(answer[:answer.find(' ')])
-	    		continue
-	    	if is_kuohao(answer):
-	    		Phone_Max_second(answer[:answer.find(')')+1],answer[answer.find(')')+1:])
-	    		#print(answer[answer.find(')')+1:])
-	    		continue
-zidian2 = ""
-for item in zidian.items():
-	if zidian2 =='':
-		zidian2 = str(item)
-	else:
-		zidian2 = zidian2 + "\n" +str(item)
-print("There are {} different telephone numbers in the records.".format(zidian2))
-    ##分割法看元素个数
-ss  = zidian["(080)"]
-spl = ss.split(',')
-percent = float(len(spl))/float(zong) *100
+        arrive = calls[i]
+        if is_contain(arrive[0]):
+            if is_contain(arrive[1]):
+                quan +=1
+            if is_space(arrive[1]):
+                One = arrive[1][:arrive[1].find(' ')-1]
+                if One not in zidian_first:
+                    zidian_first.append(One)
+                continue
+            if is_kuohao(arrive[1]):
+                Two = arrive[1][:arrive[1].find(')')+1]
+                if Two not in zidian_first:
+                    zidian_first.append(Two)
+                    continue
+            if is_xiaoshou(arrive[1]):
+                third = arrive[1][:arrive[1].find(')')+1]
+                if third not in zidian_first:
+                    zidian_first.append(third)
+                    continue
+percent = float(quan)/float(zong) *100
+
+print("The numbers called by people in Bangalore have codes:")
+for tp in sorted(zidian_first):
+    print(tp)
+
 
 print("\n{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(percent,2)))
 """

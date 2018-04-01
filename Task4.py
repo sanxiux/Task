@@ -5,34 +5,43 @@
 import csv
 
 
-##先找到电话销售的电话
-def is_xiaoshou(char):
-    """判断是否包含空格"""
-    if char.startswith('140'):
-    	return True
-    else:
-        return False
-zidian =[]
+#这是所有的播出电话号码
+zidian_first =[]
+#这是接听电话的
+zidian_second = []
+#这个是发短信的
+zidian_third = []
+#这个是接收短信的
+zidian_forth = []
 filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
     for i in range(len(calls)):
-    	arrive = calls[i]
-    	call = arrive[0]
-    	if is_xiaoshou(call):
-    		if(call not in zidian):
-    			zidian.append(call)
-ss = ""
-for j in zidian:
-	ss = ss + "\n" +j
-# ##然后找到进行接短信和发短信的
-# filename = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/texts.csv'
-# phone = []
-# with open(filename, 'r') as f:
-#     reader = csv.reader(f)
-#     texts = list(reader)
-print("These numbers could be telemarketers: ",ss)
+        arrive = calls[i]
+        if arrive[0] not in zidian_first:
+            zidian_first.append(arrive[0])
+        if arrive[1] not in zidian_second:
+            zidian_second.append(arrive[1])
+
+filename = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/texts.csv'
+with open(filename, 'r') as f:
+    reader = csv.reader(f)
+    texts = list(reader)
+    for i in range(len(texts)):
+        arrive = texts[i]
+        if arrive[0] not in zidian_third:
+            zidian_third.append(arrive[0])
+        if arrive[1] not in zidian_forth:
+            zidian_forth.append(arrive[1])
+
+tmp = [val1 for val1 in zidian_first if val1 not in zidian_second]
+tmp2 = [val2 for val2 in tmp if val2 not in zidian_third]
+tmp3 = sorted([val3 for val3 in tmp2 if val3 not in zidian_forth])
+
+print("These numbers could be telemarketers")
+for tp in tmp3:
+    print(tp)
 """
 任务4:
 电话公司希望辨认出可能正在用于进行电话推销的电话号码。
