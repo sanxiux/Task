@@ -38,17 +38,19 @@ def is_xiaoshou(char):
     else:
         return False
 zidian_first = []
-zong = ""
+zong = 0
 quan = 0
 filename2 = 'calls.csv'   
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    zong = len(calls)
     for i in range(len(calls)):
         arrive = calls[i]
         if is_contain(arrive[0]):
-            quan +=1
+            zong +=1
+            if is_contain(arrive[1]):
+                quan +=1
+                
             if is_space(arrive[1]):
                 One = arrive[1][:arrive[1].find(' ')-1]
                 if One not in zidian_first:
