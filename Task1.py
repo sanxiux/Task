@@ -3,7 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
-filename = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/texts.csv'
+filename = 'texts.csv'
 phone = []
 news_ids = []
 def news_phone(lists):
@@ -20,7 +20,7 @@ with open(filename, 'r') as f:
     	phone.append(arrive[0])
     	phone.append(arrive[1])
 
-filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
+filename2 = 'calls.csv'  
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)

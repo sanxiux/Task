@@ -3,7 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
-filename = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/texts.csv'
+filename = 'texts.csv'
 with open(filename, 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
@@ -11,7 +11,7 @@ with open(filename, 'r') as f:
     print('First record of texts,{} texts {} at time {}'.format(element_First[0],element_First[1],element_First[2]))
 
 
-filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
+filename2 = 'calls.csv'    
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)

@@ -13,7 +13,7 @@ zidian_second = []
 zidian_third = []
 #这个是接收短信的
 zidian_forth = []
-filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
+filename2 = 'calls.csv' 
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
@@ -24,7 +24,7 @@ with open(filename2, 'r') as f:
         if arrive[1] not in zidian_second:
             zidian_second.append(arrive[1])
 
-filename = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/texts.csv'
+filename = 'texts.csv'
 with open(filename, 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)

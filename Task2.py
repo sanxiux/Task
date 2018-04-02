@@ -4,7 +4,7 @@
 """
 import csv
 
-filename2 = 'C:/Users/Administrator/Desktop/cn-python-foundation-master/investigate texts and calls/ZH/calls.csv'    
+filename2 = 'calls.csv'   
 with open(filename2, 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
